@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <style>
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+            font-weight: 800;
+            font-style: normal;
+        }
+
+        html, body{
+            font-family: Pretendard;
+        }
+
+        body{
+            /* background: linear-gradient(to bottom, midnightblue, #000); */
+            background: url(./assets/imgs/bg_1.jpg) no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+            padding: 0 10px;
+            background: indigo;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            height: 50px;
+            z-index: 1;
+        }
+        header h1{
+            margin: 0;
+            font-size: 24px;
+        }
+        main{
+            position: relative;
+            /* padding-top: 44px; */
+        }
+        main > div{
+            /* border: 1px solid red; */
+        }
+
+        .field-title{
+            text-align: center;
+            margin: 0;
+            margin-bottom: 50px;
+            font-size: 40px;
+        }
+
+        .field1 .bg{
+            height: 500px;
+            display: flex;
+            align-items: flex-end;
+            background: linear-gradient(to bottom, transparent, #000), linear-gradient(to left, transparent 5px , rgba(255, 255, 255, .25) 0) repeat;
+            background-size: 10px;
+        }
+        .field1 .bg h1{
+            width: 100%;
+            margin: 0;
+            color: #fff;
+            position: relative;
+            top: 30px;
+            /* background: linear-gradient(to top, #fff 30px, transparent 0); */
+            /* text-shadow: 0 0 40px rgba(255, 255, 255, .8); */
+            text-shadow: 0 -4px 12px rgba(255, 255, 255, .9);
+            font-size: 120px;
+            text-align: center;
+        }
+        .field2{
+            padding: 40px 10px;
+            background: #fff;
+            box-shadow: 0 -4px 12px rgba(255, 255, 255, .9);
+        }
+        
+        .field2 > div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .field2 .left-side{
+            margin-right: 40px;
+        }
+        .field2 .left-side .puzzle-bottom{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .field2 .puzzle-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            width: 240px;
+            height: 336px;
+            background: #fff;
+            background: url(./assets/imgs/wondaero_pic.jpg) no-repeat;
+            background-size: 240px auto;
+            position: relative;
+            margin-bottom: 5px;
+            transform: rotate(-1deg);
+        }
+        .field2 .puzzle-wrapper:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        .field2 .puzzle-wrapper > div{
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            /* border: 1px solid pink; */
+            box-shadow: 0 0 1px #fff;
+            box-sizing: border-box;
+            background: url(./assets/imgs/wondaero_pic.jpg) no-repeat;
+            background-size: 240px auto;
+            transform: translate(96px, 144px);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            cursor: pointer;
+        }
+        .field2 .puzzle-wrapper > div.picked{
+            border: 4px double red;
+        }
+        .field2 .left-side strong{
+            font-size: 32px;
+            font-weight: 900;
+        }
+        .field2 .left-side button{
+            padding: 0;
+            background: 0;
+            border: 0;
+            font-size: 42px;
+            cursor: pointer;
+        }
+
+        .field2 .img-wrapper{
+            flex: 1;
+            max-width: 240px;
+            /* border: 1px dashed #222; */
+            background: pink;
+            margin-right: 20px;
+        }
+        .field2 img{
+            width: 100%;
+            vertical-align: top;
+            transform: rotate(2deg);
+            filter: grayscale(1);
+        }
+        .field2 img:hover{
+            filter: grayscale(0);
+        }
+        .field2 ul{
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+            
+        }
+        .field2 ul li{
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .field2 ul li:last-of-type{
+            margin-bottom: 0;
+        }
+        .field2 ul span{
+            width: 100px;
+        }
+
+        .field3{
+            padding: 40px 0;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            /* background: rgba(255, 255, 255, .25); */
+        }
+        .field3 h2{
+            color: #fff;
+        }
+        .field3 ul{
+            list-style: none;
+            margin: 0 auto;
+            width: 800px;
+            padding: 50px 0 0 50px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .field3 ul li{
+            margin-right: 50px;
+            margin-bottom: 50px;
+        }
+        .field4{
+            padding: 40px 0 0;
+            background: #eee;
+        }
+        .field4 > ul{
+            margin: 0;
+            padding: 0;
+            padding: 50px 0;
+            position: relative;
+            list-style: none;
+        }
+        .field4 > ul:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            bottom: 0;
+            border-left: 3px solid #000;
+            transform: translateX(-50%);
+        }
+        .field4 > ul > li{
+            margin-bottom: 80px;
+            display: flex;
+            position: relative;
+        }
+        .field4 > ul > li:last-of-type{
+            margin-bottom: 0;
+        }
+        .field4 > ul > li h4{
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .field4 > ul > li h5{
+            font-size: 20px;
+            margin: 0 0 10px;
+            color: indigo;
+        }
+        .field4 > ul > li strong{
+            color: #aaa;
+        }
+        .field4 > ul > li:before{
+            content: '';
+            position: absolute;
+            top: calc(50% - 6px);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #eee;
+            border: 3px solid #222;
+            display: block;
+        }
+        .field4 > ul > li:nth-of-type(2n-1){
+            margin-left: 50%;
+            padding-left: 20px;
+        }
+        
+        .field4 > ul > li:nth-of-type(2n-1):before{
+            left: -9px;
+        }
+        
+        .field4 > ul > li:nth-of-type(2n){
+            margin-right: 50%;
+            justify-content: flex-end;
+            padding-right: 20px;
+        }
+        .field4 > ul > li:nth-of-type(2n):before{
+            right: -9px;
+        }
+        
+        /* svg{
+            position: fixed;
+            top: 0;
+            right: 20px;
+            width: 50px;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: visible;
+        } */
+
+        .scroll-field{
+            padding: 10px;
+            position: fixed;
+            bottom: 10px;
+            /* left: 10px;
+            right: 10px; */
+            width: 100%;
+            max-width: 480px;
+            left: 50%;
+            transform: translate(-50%);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .5);
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 70px;
+        }
+        .scroll-field svg{
+            width: auto;
+            height: 30px;
+            min-width: 100%;
+            overflow: visible;
+        }
+
+        @media (max-width: 1700px){
+            .field1 .bg h1{
+                font-size: 80px;
+                top: 20px;
+            }
+        }
+        @media (max-width: 1100px){
+            .field1 .bg h1{
+                font-size: 60px;
+                top: 16px;
+            }
+        }
+        @media (max-width: 860px){
+            .field3 ul{
+                width: 640px;
+            }
+        }
+        @media (max-width: 840px){
+            .field1 .bg h1{
+                font-size: 40px;
+                top: 10px;
+            }
+            
+            .field2 > div{
+                flex-direction: column;
+            }
+
+            .field2 .left-side{
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+        @media (max-width: 560px){
+            .field1 .bg{
+                height: 300px;
+            }
+            .field1 .bg h1{
+                font-size: 24px;
+                top: 6px;
+            }
+            .field2 ul{
+                font-size: 16px;
+            }
+            .field2 ul span{
+                width: 80px;
+            }
+
+            .field4 > ul:before{
+                left: 40px;
+            }
+            .field4 > ul > li:nth-of-type(n){
+                margin-left: 0;
+                margin-right: 0;
+                justify-content: flex-start;
+                padding-left: 70px;
+            }
+            .field4 > ul > li:nth-of-type(n):before{
+                left: 31px;
+                right: unset;
+            }
+        }
+        @media (max-width: 360px){
+            .field1 .bg h1{
+                font-size: 18px;
+                top: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>
+        <h1>r.'s p.rtf.li.</h1>
+    </header> -->
+    <main>
+        <div class="field1">
+            <div class="bg">
+                <h1 id="curTime">PRACTICE MAKES PERFECT.</h1>
+            </div>
+        </div>
+        <div class="field2">
+            <h2 class="field-title">ABOUT ME</h2>
+            <div>
+                <div class="left-side">
+                    <div id="puzzleWrapper" class="puzzle-wrapper">
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                        <div onclick="pickedCell(event)"></div>
+                    </div>
+                    <div class="puzzle-bottom">
+                        <strong id="puzzleRate"></strong>
+                        <button onclick="shuffleCell()">🔄</button>
+                    </div>
+                </div>
+                <ul>
+                    <li><span>name</span><strong>원정민</strong></li>
+                    <li><span>birth</span><strong>1988.5.31</strong></li>
+                    <li><span>address</span><strong>서울시 은평구 응암동</strong></li>
+                    <li><span>phone</span><strong>010-8580-5167</strong></li>
+                    <li><span>e-mail</span><strong>wondaero@nate.com</strong></li>
+                </ul>
+            </div>
+        </div>
+        <div id="field3" class="field3">
+            <h2 class="field-title">MY SKILL</h2>
+            <ul>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">HTML</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">80%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">CSS</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">80%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">javascript</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">jQuery</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">VUE</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">react</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">JAVA</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">10%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">nodeJS</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">40%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">PHP</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">30%</text>
+                    </svg>
+                </li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
+                        <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
+                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">SQL</text>
+                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">30%</text>
+                    </svg>
+                </li>
+            </ul>
+            
+
+        </div>
+        <div id="field4" class="field4">
+            <h2 class="field-title">HISTORY</h2>
+            <ul>
+                <li>
+                    <div>
+                        <h4>(주)북틀</h4>
+                        <h5>프론트엔드/퍼블리셔</h5>
+                        <strong>2022.12 ~ 2025.04</strong>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>나누고</h4>
+                        <h5>프론트엔드</h5>
+                        <strong>2021.10 ~ 2022.08</strong>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <h4>진코퍼레이션</h4>
+                        <h5>프론트엔드/퍼블리셔</h5>
+                        <strong>2018.12 ~ 2020.11</strong>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div>11</div>
+        <div>11</div>
+        <div>11</div>
+    </main>
+    <aside class="scroll-field">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32769" height="2377" viewBox="0 0 32769 2377" fill="none">
+            <path id="track" stroke="rgba(0, 0, 0, .5)" stroke-width="100" stroke-linecap="round" d="M1.61502 648.433C357.41 635.255 702.462 466.777 1023.74 326.864C1306.19 203.865 1577.84 143.839 1864.99 54.1044C2313.26 -85.9808 2422.37 68.6035 2740.69 364.189C3031.35 634.08 3273.03 1165.24 3725.5 1165.24C4542.89 1165.24 5095.02 660.67 5815.7 367.06C6133.17 237.719 6527.39 90.3566 6875.15 206.275C7275.62 339.764 7438.06 752.628 7730.75 1010.2C7944.33 1198.14 8291.98 1468.8 8592.1 1475.32C8791.45 1479.66 8967.51 1461.48 9149.1 1371.96C9356.4 1269.77 9513.35 1067.6 9740.56 1013.07C9896.86 975.556 10030.6 942.733 10182.7 1018.81C10352.6 1103.77 10458.8 1303.56 10659.3 1205.44C11241.7 920.46 12103.9 1061.88 12735.2 1061.88C12907.7 1061.88 13156.4 1016.94 13306.5 1125.04C13512.8 1273.53 13596.6 1605.32 13697 1825.6C13862 2187.68 14117.9 2503.42 14549.7 2322.31C15046.3 2114.09 15560.6 1255.7 16177.7 1515.52C16452.2 1631.13 16899 991.009 17153.9 886.738C17415.7 779.645 17636.3 1238.46 17894.6 1297.31C18333.1 1397.21 18840.9 1150.92 19255.6 1300.18C19804.3 1497.74 20255 1822.03 20869.1 1555.72C21129.5 1442.81 21317.2 1291.43 21460.6 1050.39C21705.9 638.14 22031.4 349.516 22497.1 197.662C23086.5 5.47655 23715.4 103.231 24173.8 530.715C24537.1 869.455 24745.8 1344.46 25118.4 1670.56C25468.4 1976.78 25895.2 1830.38 26278.4 1656.21C26463.4 1572.13 26356.3 2002.77 26588.5 2032.33C27158.7 2104.9 27639 1510.93 28187.7 1426.51C28422.6 1390.37 28653.4 1429.7 28891.1 1371.96C29047.4 1334 29204.9 1268.6 29367.7 1268.6C29616.5 1268.6 29821.7 1396.14 30059.7 1443.74C30502.8 1532.37 30989 1381.13 31423.5 1486.81C31897 1601.98 32417 2330.69 32767.2 1630.37" />
+            <circle id="thumb" cx="1.61502" cy="648.433" r="300" fill="black"></circle>
+        </svg>
+    </aside>
+
+    <script>
+        const track = document.getElementById('track');
+        const thumb = document.getElementById('thumb');
+        const field4 = document.getElementById('field4');
+        let timeout = '';
+
+        window.addEventListener('scroll', (e) => {
+            // if(window.innerHeight + window.scrollY > field4.offsetTop + field4.clientHeight){
+            //     // window.scrollTop = field4.offsetTop + field4.clientHeight;
+            //     console.log('못가', window.innerHeight + window.scrollY, field4.offsetTop + field4.clientHeight, window.scrollY);
+
+            //     console.log(field4.offsetTop + field4.clientHeight - window.innerHeight, window.scrollY)
+            //     window.scrollTo({
+            //         top: field4.offsetTop + field4.clientHeight - window.innerHeight,    // Y 위치(px)
+            //         left: 0,
+            //     });
+            //     return;
+            // }
+
+            console.log(window.scrollY);
+            const pathLength = track.getTotalLength();
+            const point = track.getPointAtLength(pathLength * (window.scrollY / (document.body.scrollHeight - window.innerHeight)));
+
+            thumb.setAttribute('cx', point.x);
+            thumb.setAttribute('cy', point.y);
+
+            
+
+            // console.log(window.innerHeight, window.scrollY, field4.offsetTop);
+        })
+
+        const curTime = document.getElementById('curTime');
+        // getTime();
+        function getTime() {
+            // const now = Date.now();
+            const now = new Date();
+
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mm = String(now.getMinutes()).padStart(2, '0');
+            const ss = String(now.getSeconds()).padStart(2, '0');
+
+            if(2 <= now.getHours() && now.getHours() <= 6){
+
+            }else if(7 <= now.getHours() && now.getHours() <= 11){
+            }else if(12 <= now.getHours() && now.getHours() <= 15){
+            }else if(16 <= now.getHours() && now.getHours() <= 18){
+            }else if(19 <= now.getHours() && now.getHours() <= 18){
+
+            }else{
+
+            }
+
+            curTime.textContent = `${hh}:${mm}:${ss}`;
+
+            const delay = 1000 - (now.getTime() % 1000); // 정확히 다음 초 맞추기
+            timeout = setTimeout(getTime, delay);
+        }
+
+
+
+
+
+        const puzzleCells = document.querySelectorAll('#puzzleWrapper > div');
+        const numArr = [];
+        const puzzleObj = {
+            picked: ''
+        }
+
+        function shuffle(array) {   //배열 섞기(원본 변형x)
+            const copied = array.slice();
+            for (let i = copied.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copied[i], copied[j]] = [copied[j], copied[i]];
+            }
+            return copied;
+        }
+
+        for(let i = 0; i < 7; i++){ //row
+            for(let j = 0; j < 5; j++){ //col
+                // puzzleCells[(i * 5) + j].textContent = (i * 5) + j;
+                const targetCell = puzzleCells[(i * 5) + j];
+                targetCell.dataset.origin = (i * 5) + j;
+                targetCell.dataset.shuffle = '';
+                puzzleCells[(i * 5) + j].style.backgroundPosition = `${j * -48}px ${i * -48}px`;
+
+                numArr.push((i * 5) + j);   //숫자 배열 생성
+            }
+        }
+
+        function shuffleCell(){
+            const shuffledArr = shuffle(numArr);
+    
+            shuffledArr.forEach((num, idx) => {
+                puzzleCells[idx].dataset.shuffle = num;
+                const row = Math.floor(num / 5);
+                const col = num % 5;
+    
+                puzzleCells[idx].style.transform = `translate(${48 * col}px, ${48 * row}px)`;
+            })
+            document.getElementById('puzzleRate').textContent = getPuzzleRate() + '%';
+        }
+
+        setTimeout(() => {
+            shuffleCell();
+        })
+
+
+        function getPuzzleRate(){
+            const totalCell = 35;
+            let correctCnt = 0;
+            puzzleCells.forEach((cell) => {
+                if(+cell.dataset.origin === +cell.dataset.shuffle) correctCnt++;
+            })
+
+            return formatNumber(correctCnt / totalCell * 100);
+        }
+
+        function formatNumber(num){
+            const [int, dec] = String(num).split('.');
+            if(!dec || dec.length === 1) return +num;
+
+            return +(int + '.' +dec.slice(0, 2));
+        }
+
+        function pickedCell(e){
+            if(puzzleObj.picked === e.currentTarget.dataset.origin){
+                puzzleObj.picked = '';
+                e.currentTarget.classList.remove('picked');
+
+                return;
+            }
+
+            if(puzzleObj.picked !== ''){
+                const curTranslate = e.currentTarget.style.transform;
+                const curShuffle = e.currentTarget.dataset.shuffle;
+
+                const pickedTarget = document.querySelector('[data-origin="' + puzzleObj.picked + '"]');    //이전 픽
+
+                e.currentTarget.style.transform = pickedTarget.style.transform;
+                e.currentTarget.dataset.shuffle = pickedTarget.dataset.shuffle;
+
+                pickedTarget.style.transform = curTranslate;
+                pickedTarget.dataset.shuffle = curShuffle;
+                pickedTarget.classList.remove('picked');
+                
+                puzzleObj.picked = '';
+                document.getElementById('puzzleRate').textContent = getPuzzleRate() + '%';
+
+                return;
+            }
+
+            puzzleObj.picked = e.currentTarget.dataset.origin;
+            e.currentTarget.classList.add('picked');
+        }
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
