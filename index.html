@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PORTFOLIO</title>
     <link rel="stylesheet" href="./assets/css/normalize.css" />
     <style>
         @font-face {
@@ -39,6 +39,7 @@
 
         html, body{
             font-family: Pretendard;
+            min-width: 280px;
         }
 
         body{
@@ -221,8 +222,14 @@
             flex-wrap: wrap;
         }
         .field3 ul li{
+            color: #fff;
             margin-right: 50px;
             margin-bottom: 50px;
+        }
+        .field3 ul li strong{
+            display: block;
+            text-align: center;
+            margin-bottom: 15px;
         }
         .field4{
             padding: 40px 0 0;
@@ -294,6 +301,11 @@
             right: -9px;
         }
         
+        .field5{
+            padding: 40px 0 80px;
+            background: rgba(255, 255, 255, .99);
+        }
+        
         /* svg{
             position: fixed;
             top: 0;
@@ -307,22 +319,18 @@
         .scroll-field{
             padding: 10px;
             position: fixed;
-            bottom: 10px;
-            /* left: 10px;
-            right: 10px; */
-            width: 100%;
-            max-width: 480px;
-            left: 50%;
-            transform: translate(-50%);
+            bottom: 0;
+            left: 0;
+            right: 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, .5);
             background: #fff;
             display: flex;
             justify-content: center;
             padding: 10px;
-            border-radius: 70px;
         }
         .scroll-field svg{
             width: auto;
+            max-width: 80%;
             height: 30px;
             min-width: 100%;
             overflow: visible;
@@ -360,6 +368,11 @@
                 margin-bottom: 20px;
             }
         }
+        @media (max-width: 700px){
+            .field3 ul{
+                width: 490px;
+            }
+        }
         @media (max-width: 560px){
             .field1 .bg{
                 height: 300px;
@@ -375,6 +388,10 @@
                 width: 80px;
             }
 
+            .field3 ul{
+                width: 330px;
+            }
+
             .field4 > ul:before{
                 left: 40px;
             }
@@ -387,6 +404,16 @@
             .field4 > ul > li:nth-of-type(n):before{
                 left: 31px;
                 right: unset;
+            }
+            
+        }
+        @media (max-width: 400px){
+            .field3 ul{
+                padding-left: 20px;
+                width: 260px;
+            }
+            .field3 ul li{
+                margin-right: 20px;
             }
         }
         @media (max-width: 360px){
@@ -463,86 +490,86 @@
             </div>
         </div>
         <div id="field3" class="field3">
-            <h2 class="field-title">MY SKILL</h2>
+            <h2 class="field-title">MY SKILLS</h2>
             <ul>
                 <li>
+                    <strong>HTML</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">HTML</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">80%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="62.8"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">80%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>CSS</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">CSS</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">80%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="62.8"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">80%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>javascript</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
                         <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">javascript</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">50%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>jQuery</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
                         <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">jQuery</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">50%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>VUE</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">VUE</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="125.6"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">60%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>react</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">react</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">75%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="157"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">50%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>JAVA</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">JAVA</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">10%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="282.6"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">10%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>nodeJS</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">nodeJS</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">40%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="188.4"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">40%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>PHP</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">PHP</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">30%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="219.8"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">30%</text>
                     </svg>
                 </li>
                 <li>
+                    <strong>SQL</strong>
                     <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" fill="none">
                         <circle cx="55" cy="55" r="50" stroke="rgba(255, 255, 255, .5)" stroke-width="6" />
-                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="78.5"/>
-                        <text x="50%" y="45" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">SQL</text>
-                        <text x="50%" y="65" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">30%</text>
+                        <circle cx="55" cy="55" r="50" stroke="#fff" stroke-width="10" transform="rotate(-90 55 55)" stroke-dasharray="314" stroke-dashoffset="219.8"/>
+                        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="16" fill="#fff">30%</text>
                     </svg>
                 </li>
             </ul>
@@ -575,9 +602,15 @@
                 </li>
             </ul>
         </div>
-        <div>11</div>
-        <div>11</div>
-        <div>11</div>
+        <div id="field5" class="field5">
+            <h2 class="field-title">ITEMS</h2>
+            <ul>
+                <li>Daily-Bible</li>
+                <li>가위바위보</li>
+                <li>Find-Them-All</li>
+                <li>연산군</li>
+            </ul>
+        </div>
     </main>
     <aside class="scroll-field">
         <svg xmlns="http://www.w3.org/2000/svg" width="32769" height="2377" viewBox="0 0 32769 2377" fill="none">
@@ -593,17 +626,6 @@
         let timeout = '';
 
         window.addEventListener('scroll', (e) => {
-            // if(window.innerHeight + window.scrollY > field4.offsetTop + field4.clientHeight){
-            //     // window.scrollTop = field4.offsetTop + field4.clientHeight;
-            //     console.log('못가', window.innerHeight + window.scrollY, field4.offsetTop + field4.clientHeight, window.scrollY);
-
-            //     console.log(field4.offsetTop + field4.clientHeight - window.innerHeight, window.scrollY)
-            //     window.scrollTo({
-            //         top: field4.offsetTop + field4.clientHeight - window.innerHeight,    // Y 위치(px)
-            //         left: 0,
-            //     });
-            //     return;
-            // }
 
             console.log(window.scrollY);
             const pathLength = track.getTotalLength();
@@ -611,8 +633,6 @@
 
             thumb.setAttribute('cx', point.x);
             thumb.setAttribute('cy', point.y);
-
-            
 
             // console.log(window.innerHeight, window.scrollY, field4.offsetTop);
         })
