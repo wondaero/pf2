@@ -94,13 +94,41 @@
             flex-direction: column;
             width: 40px;
             height: 40px;
+            transition: transform .5s .5s;
+            cursor: pointer;
         }
         .menu-wrapper button > b{
+            position: relative;
             width: 24px;
             height: 4px;
             background: #fff;
             border-radius: 4px;
             margin-bottom: 4px;
+            transition: transform .5s;
+        }
+        .menu-wrapper.hidden button{
+            transform: rotate(0);
+        }
+        .menu-wrapper.hidden button > b:nth-of-type(1){
+            transform: translateY(0);
+        }
+        .menu-wrapper.hidden button > b:nth-of-type(2){
+            transform: rotate(0);
+        }
+        .menu-wrapper.hidden button > b:nth-of-type(3){
+            transform: translateY(0);
+        }
+        .menu-wrapper button{
+            transform: rotate(135deg);
+        }
+        .menu-wrapper button > b:nth-of-type(1){
+            transform: translateY(8px);
+        }
+        .menu-wrapper button > b:nth-of-type(2){
+            transform: rotate(90deg);
+        }
+        .menu-wrapper button > b:nth-of-type(3){
+            transform: translateY(-8px);
         }
         .menu-wrapper button > b:last-of-type{
             margin-bottom: 0;
@@ -116,12 +144,12 @@
             align-items: center;
             justify-content: center;
         }
-        .menu-wrapper .menu.hidden{
+        .menu-wrapper.hidden .menu{
             pointer-events: none;
             opacity: 0;
             transition: opacity 1s .8s;
         }
-        .menu-wrapper .menu.hidden span{
+        .menu-wrapper.hidden .menu span{
             transform: scale(1);
         }
         .menu-wrapper .menu span{
@@ -137,7 +165,7 @@
             transition: transform .8s ease-in-out;
             z-index: -1;
         }
-        .menu-wrapper .menu.hidden ul{
+        .menu-wrapper.hidden .menu ul{
             opacity: 0;
             transition: opacity 0s;
         }
@@ -160,6 +188,9 @@
             color: #fff;
             text-decoration: none;
             font-weight: 900;
+        }
+        .menu-wrapper .menu ul a:hover{
+            text-shadow: 0 -2px 20px rgba(255, 255, 255, .9);
         }
         
         main{
@@ -402,6 +433,18 @@
             padding: 40px 0 80px;
             background: rgba(255, 255, 255, .99);
         }
+        .field5 > div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .field5 ul li{
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+        .field5 ul li:last-of-type{
+            margin-bottom: 0;
+        }
         
         /* svg{
             position: fixed;
@@ -525,13 +568,13 @@
     <!-- <header>
         <h1>r.'s p.rtf.li.</h1>
     </header> -->
-    <aside class="menu-wrapper">
+    <aside id="menuWrapper" class="menu-wrapper hidden">
         <button id="hamburger" class="hamburger">
             <b></b>
             <b></b>
             <b></b>
         </button>
-        <div id="menu" class="menu hidden">
+        <div id="menu" class="menu">
             <span id="circleBG"></span>
             <ul>
                 <li><a href="#field2">ABOUT ME</a></li>
@@ -547,7 +590,7 @@
                 <h1 id="curTime">PRACTICE MAKES PERFECT.</h1>
             </div>
         </div>
-        <div class="field2">
+        <div id="field2" class="field2">
             <h2 class="field-title">ABOUT ME</h2>
             <div>
                 <div class="left-side">
@@ -595,7 +638,7 @@
                 </div>
                 <ul>
                     <li><span>name</span><strong>원정민</strong></li>
-                    <li><span>birth</span><strong>1988.5.31</strong></li>
+                    <li><span>birth</span><strong>1988.05.31</strong></li>
                     <li><span>address</span><strong>서울시 은평구 응암동</strong></li>
                     <li><span>phone</span><strong>010-8580-5167</strong></li>
                     <li><span>e-mail</span><strong>wondaero@nate.com</strong></li>
@@ -717,12 +760,15 @@
         </div>
         <div id="field5" class="field5">
             <h2 class="field-title">ITEMS</h2>
-            <ul>
-                <li>Daily-Bible</li>
-                <li>가위바위보</li>
-                <li>Find-Them-All</li>
-                <li>연산군</li>
-            </ul>
+            <div>
+                <ul>
+                    <li><a target="_blank" href="https://wondaero.github.io/daily-bible">Daily-Bible</a></li>
+                    <li><a target="_blank" href="https://wondaero.github.io/game.rps">가위바위보</a></li>
+                    <li><a target="_blank" href="https://wondaero.github.io/game.fta">Find Them All</a></li>
+                    <li><a target="_blank" href="https://wondaero.github.io/game.calc">연산군</a></li>
+                    <li><a target="_blank" href="https://wondaero.github.io/game.time">시간에 갇힌 자</a></li>
+                </ul>
+            </div>
         </div>
     </main>
     <aside class="scroll-field">
@@ -736,21 +782,23 @@
         const track = document.getElementById('track');
         const thumb = document.getElementById('thumb');
         const field4 = document.getElementById('field4');
+        const menuWrapper = document.getElementById('menuWrapper');
         const menu = document.getElementById('menu');
+        const circleBG = document.getElementById('circleBG');
 
         let timeout = '';
 
         window.addEventListener('scroll', (e) => {
-
-            console.log(window.scrollY);
             const pathLength = track.getTotalLength();
             const point = track.getPointAtLength(pathLength * (window.scrollY / (document.body.scrollHeight - window.innerHeight)));
-
+            
             thumb.setAttribute('cx', point.x);
             thumb.setAttribute('cy', point.y);
-
-            // console.log(window.innerHeight, window.scrollY, field4.offsetTop);
         })
+        window.addEventListener('resize', (e) => {
+            menuWrapper.classList.add('hidden');
+            circleBG.style.transform = 'scale(0)';
+        });
 
         const curTime = document.getElementById('curTime');
         // getTime();
@@ -810,8 +858,8 @@
             }
         }
 
-        function shuffleCell(){
-            const shuffledArr = shuffle(numArr);
+        function shuffleCell(arr){
+            const shuffledArr = arr === undefined ? shuffle(numArr) : arr;
     
             shuffledArr.forEach((num, idx) => {
                 puzzleCells[idx].dataset.shuffle = num;
@@ -824,7 +872,12 @@
         }
 
         setTimeout(() => {
-            shuffleCell();
+            const tmpArr = numArr.slice('');
+            // tmpArr[0] = 23;
+            // tmpArr[23] = 0;
+            [tmpArr[0], tmpArr[23]] = [tmpArr[23], tmpArr[0]];
+
+            shuffleCell(tmpArr);
         })
 
 
@@ -878,16 +931,23 @@
 
 
         document.getElementById('hamburger').addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            if(menu.classList.contains('hidden')){
-                document.getElementById('circleBG').style.transform = 'scale(0)';
+            menuWrapper.classList.toggle('hidden');
+            if(menuWrapper.classList.contains('hidden')){
+                circleBG.style.transform = 'scale(0)';
             }else{
                 const windowWidth = window.innerWidth;
                 const windowHeight = window.innerHeight;
                 const scaleSize = ((windowWidth > windowHeight ? windowWidth : windowHeight) / 10) + 1;
                 
-                document.getElementById('circleBG').style.transform = `scale(${scaleSize})`;
+                circleBG.style.transform = `scale(${scaleSize})`;
             }
+        })
+
+        document.querySelectorAll('#menu a').forEach((a) => {
+            a.addEventListener('click', () => {
+                menuWrapper.classList.add('hidden');
+                circleBG.style.transform = 'scale(0)';
+            })
         })
         
     </script>
