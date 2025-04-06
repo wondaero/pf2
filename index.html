@@ -37,6 +37,8 @@
             font-style: normal;
         }
 
+        
+
         html, body{
             font-family: Pretendard;
             min-width: 280px;
@@ -66,6 +68,100 @@
             margin: 0;
             font-size: 24px;
         }
+
+        .menu-wrapper{
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: indigo;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            z-index: 2;
+            box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        }
+        .menu-wrapper button{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: 0;
+            cursor: pointer;
+            z-index: 3;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 40px;
+            height: 40px;
+        }
+        .menu-wrapper button > b{
+            width: 24px;
+            height: 4px;
+            background: #fff;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+        .menu-wrapper button > b:last-of-type{
+            margin-bottom: 0;
+        }
+        .menu-wrapper .menu{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-wrapper .menu.hidden{
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s .8s;
+        }
+        .menu-wrapper .menu.hidden span{
+            transform: scale(1);
+        }
+        .menu-wrapper .menu span{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            display: block;
+            background: indigo;
+            border-radius: 50%;
+            /* transition: transform .8s cubic-bezier(0.68, -0.55, 0.27, 1.55); */
+            transition: transform .8s ease-in-out;
+            z-index: -1;
+        }
+        .menu-wrapper .menu.hidden ul{
+            opacity: 0;
+            transition: opacity 0s;
+        }
+        .menu-wrapper .menu ul{
+            margin: 0;
+            padding: 0;
+            font-size: 40px;
+            list-style: none;
+            opacity: 1;
+            transition: opacity 0s .4s;
+        }
+        .menu-wrapper .menu ul li{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu-wrapper .menu ul li:last-of-type{
+            margin-bottom: 0;
+        }
+        .menu-wrapper .menu ul a{
+            color: #fff;
+            text-decoration: none;
+            font-weight: 900;
+        }
+        
         main{
             position: relative;
             /* padding-top: 44px; */
@@ -153,7 +249,7 @@
             background: url(./assets/imgs/wondaero_pic.jpg) no-repeat;
             background-size: 240px auto;
             transform: translate(96px, 144px);
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transition: transform .5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             cursor: pointer;
         }
         .field2 .puzzle-wrapper > div.picked{
@@ -429,6 +525,22 @@
     <!-- <header>
         <h1>r.'s p.rtf.li.</h1>
     </header> -->
+    <aside class="menu-wrapper">
+        <button id="hamburger" class="hamburger">
+            <b></b>
+            <b></b>
+            <b></b>
+        </button>
+        <div id="menu" class="menu hidden">
+            <span id="circleBG"></span>
+            <ul>
+                <li><a href="#field2">ABOUT ME</a></li>
+                <li><a href="#field3">MY SKILLS</a></li>
+                <li><a href="#field4">HISTORY</a></li>
+                <li><a href="#field5">ITEMS</a></li>
+            </ul>
+        </div>
+    </aside>
     <main>
         <div class="field1">
             <div class="bg">
@@ -624,6 +736,8 @@
         const track = document.getElementById('track');
         const thumb = document.getElementById('thumb');
         const field4 = document.getElementById('field4');
+        const menu = document.getElementById('menu');
+
         let timeout = '';
 
         window.addEventListener('scroll', (e) => {
@@ -763,18 +877,18 @@
         }
 
 
-        
-
-
-
-
-
-
-
-
-
-
-
+        document.getElementById('hamburger').addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')){
+                document.getElementById('circleBG').style.transform = 'scale(0)';
+            }else{
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                const scaleSize = ((windowWidth > windowHeight ? windowWidth : windowHeight) / 10) + 1;
+                
+                document.getElementById('circleBG').style.transform = `scale(${scaleSize})`;
+            }
+        })
         
     </script>
 </body>
